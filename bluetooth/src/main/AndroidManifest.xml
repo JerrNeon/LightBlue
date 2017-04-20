@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.cw.bluetooth">
+
+    <!--经典蓝牙一样，应用使用蓝牙，需要声明BLUETOOTH权限，如果需要扫描设备或者操作蓝牙设置，则还需要BLUETOOTH_ADMIN权限-->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <!--往sdcard中写入数据的权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!--在sdcard中创建/删除文件的权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true"/>
+
+    <application
+        android:name=".BltAppliaction"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.BltSocketAcivity"/>
+
+
+        <receiver android:name=".receiver.BluetoothReceiver">
+            <intent-filter android:priority="5000">
+                <action android:name="android.bluetooth.device.action.PAIRING_REQUEST"/>
+                <action android:name="android.bluetooth.device.action.FOUND"/>
+                <action android:name="android.bluetooth.device.action.BOND_STATE_CHANGED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

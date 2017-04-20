@@ -2,9 +2,9 @@
 .gradle
 .idea
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+/bluetooth/build/
+/app/build/
